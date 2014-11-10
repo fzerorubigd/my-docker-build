@@ -1,0 +1,20 @@
+name: "docker"
+windows:
+- name: tasks
+  layout: tiled
+  panes:
+  - commands:
+    - /etc/init.d/postgresql start
+    - /etc/init.d/redis-server start
+    - mailcatcher --http-ip 0.0.0.0
+    - sleep 2  # Wait all other start then allow ssh from vagrant
+    - /etc/init.d/ssh start
+    - sleep 2 # Make sure the consul is up and running
+    - /usr/local/bin/consul join 172.17.42.1
+    focus: true
+    root: ~
+  - commands:
+    - htop
+    root: ~
+  - commands:
+    - /usr/local/bin/consul agent -config-dir /etc/consul.d/
