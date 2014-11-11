@@ -24,5 +24,7 @@ wget https://github.com/kelseyhightower/confd/releases/download/v0.6.3/confd-0.6
 chmod +x confd
 mv confd /usr/local/bin/confd
 
+# Move this stuff to install for next full rebuild
+apt-get install -y bzr 
 apt-get -y update
 apt-get -y upgrade
