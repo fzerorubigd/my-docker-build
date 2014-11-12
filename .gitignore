@@ -2,3 +2,6 @@
 .vagrant
 *.deb
 /tmp
+confd
+consul.zip
+consul

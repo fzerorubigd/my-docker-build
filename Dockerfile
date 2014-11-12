@@ -13,7 +13,11 @@ RUN bash /tmp/user.sh
 ADD go1.3.3.linux-amd64.tar.gz /usr/local/
 
 ADD tmp/bin/tmass /usr/local/bin/
+ADD consul /usr/local/bin/
+ADD confd /usr/local/bin/
 
 # Install extra tools
 ADD extra.sh /tmp/extra.sh
 RUN bash /tmp/extra.sh
+
+
