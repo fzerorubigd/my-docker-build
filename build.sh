@@ -12,5 +12,4 @@ chmod a+x consul
 
 wget -c https://github.com/kelseyhightower/confd/releases/download/v0.6.3/confd-0.6.3-linux-amd64 -O confd
 
-GOPATH=`pwd`/tmp go get -v -u github.com/fzerorubigd/tmass
 docker build -t elbix:5000/gobox .

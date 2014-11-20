@@ -12,7 +12,6 @@ RUN bash /tmp/user.sh
 # First add golang for some tools and gron
 ADD go1.3.3.linux-amd64.tar.gz /usr/local/
 
-ADD tmp/bin/tmass /usr/local/bin/
 ADD consul /usr/local/bin/
 ADD confd /usr/local/bin/
 
