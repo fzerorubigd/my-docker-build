@@ -15,3 +15,6 @@ sudo -Hu develop -- wget -O /home/develop/.zshrc.local  http://git.grml.org/f/gr
 bash -c "echo GOPATH=/home/develop > /etc/environment"
 sudo -Hu develop -- bash -c "echo export GOPATH=/home/develop >> /home/develop/.zshrc.local"
 sudo -Hu develop -- bash -c "echo export PATH=\\\$PATH:/usr/local/go/bin:/home/develop/bin >> /home/develop/.zshrc.local"
+
+# This here, belongs to extra. but I hate gem. i had problem 9 of 10 times. so I want docker to cache this.
+gem install mailcatcher --no-ri --no-rdoc
