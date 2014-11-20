@@ -14,4 +14,4 @@ sudo -Hu develop -- wget -O /home/develop/.zshrc.local  http://git.grml.org/f/gr
 # Go related stuff
 bash -c "echo export GOPATH=/home/develop > /etc/environment"
 sudo -Hu develop -- bash -c "echo export GOPATH=/home/develop >> /home/develop/.zshrc.local"
-sudo -Hu develop -- bash -c "echo export PATH=\$PATH:/usr/local/go/bin:/home/develop/bin >> /home/develop/.zshrc.local"
+sudo -Hu develop -- bash -c "echo export PATH=\\\$PATH:/usr/local/go/bin:/home/develop/bin >> /home/develop/.zshrc.local"
