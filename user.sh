@@ -18,3 +18,4 @@ sudo -Hu develop -- bash -c "echo export PATH=\\\$PATH:/usr/local/go/bin:/home/d
 
 # This here, belongs to extra. but I hate gem. i had problem 9 of 10 times. so I want docker to cache this.
 gem install mailcatcher --no-ri --no-rdoc
+pip install pgcli  
