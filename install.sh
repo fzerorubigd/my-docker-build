@@ -34,7 +34,7 @@ dpkg -i /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
 pip install --upgrade pgcli
 
 cd /tmp
-curl http://mosquitto.org/files/source/mosquitto-1.4.5.tar.gz | tar xvzf
+curl http://mosquitto.org/files/source/mosquitto-1.4.5.tar.gz | tar xvz
 git clone https://github.com/jpmens/mosquitto-auth-plug.git
 cd /tmp/mosquitto-auth-plug
 
