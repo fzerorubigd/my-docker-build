@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 15672, host: 15672 # Rabbit management
   
   config.vm.provider "docker" do |d|
-    d.image = "elbix:5000/gobox"
+    d.image = "docker.azmoona.com/azmoona/dev-box"
     d.has_ssh = true
     d.cmd = ["/bin/bash", "/vagrant/bin/init.sh"]
   end

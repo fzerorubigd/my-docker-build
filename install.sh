@@ -1,20 +1,62 @@
 #!/bin/bash
 set -euo pipefail
 
-# Change mirrors to iran, its hard to be in other-side-of-fuckin-firewall
-bash -c 'echo -e "deb http://repo.asis.io/wheezy-security wheezy/updates main contrib non-free\ndeb http://repo.asis.io/wheezy-updates/ wheezy-updates main contrib non-free\ndeb http://repo.asis.io/debian stable main contrib non-free" > /etc/apt/sources.list'
-bash -c 'echo "deb http://debian.asis.io/debian/ wheezy-backports main" >> /etc/apt/sources.list'
-
 apt-get -y update
-apt-get -y install apt-utils dialog wget curl sudo
-
+apt-get -y -f install apt-utils dialog wget curl sudo
 curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
+curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key | apt-key add -
+curl -sL https://deb.nodesource.com/setup_5.x | bash -
 
-bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main" > /etc/apt/sources.list.d/pgsql.list'
-bash -c 'echo "deb http://ir.dotdeb.aasaam.ir/ stable all" > /etc/apt/sources.list.d/dotdeb.list'
+bash -c 'echo -e "deb http://packages.dotdeb.org jessie all\ndeb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list'
+bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" >> /etc/apt/sources.list'
+bash -c 'echo "deb http://repo.mosquitto.org/debian jessie main" >> /etc/apt/sources.list'
+
+cd /tmp
+curl https://godeb.s3.amazonaws.com/godeb-amd64.tar.gz | tar zxvf -
+chmod a+x /tmp/godeb
+/tmp/godeb install 1.5.2
 
 apt-get -y update
 apt-get -y upgrade
-apt-get -y install openssh-server git zsh vim emacs nano libsqlite3-dev autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev htop redis-server postgresql mercurial nginx ruby-dev realpath pkg-config unzip libpq-dev python-pip bzr python-dev
-apt-get -y install -t wheezy-backports tmux
+apt-get -y --no-install-recommends -f install openssh-server git zsh vim nano libsqlite3-dev autoconf bison build-essential libssl-dev \
+                libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev htop redis-server postgresql mercurial \
+                nginx-extras realpath pkg-config unzip dnsutils re2c python-pip python-dev libpq-dev tmux bzr \
+                libsodium-dev elasticsearch cmake nodejs libxml2-dev libzip-dev libxslt1-dev openjdk-7-jdk mp3info inkscape \
+                libc-ares-dev uuid-dev libcurl4-gnutls-dev mosquitto libmosquitto-dev mosquitto-clients || apt-get update --fix-missing
+
+curl http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb > /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
+dpkg -i /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
+
+pip install --upgrade pgcli
+
+cd /tmp
+curl http://mosquitto.org/files/source/mosquitto-1.4.5.tar.gz | tar xvzf
+git clone https://github.com/jpmens/mosquitto-auth-plug.git
+cd /tmp/mosquitto-auth-plug
+
+cat > config.mk <<EOF
+# Select your backends from this list
+BACKEND_CDB ?= no
+BACKEND_MYSQL ?= no
+BACKEND_SQLITE ?= no
+BACKEND_REDIS ?= no
+BACKEND_POSTGRES ?= no
+BACKEND_LDAP ?= no
+BACKEND_HTTP ?= yes
+BACKEND_MONGO ?= no
+
+# Specify the path to the Mosquitto sources here
+MOSQUITTO_SRC = /tmp/mosquitto-1.4.5/
+
+# Specify the path the OpenSSL here
+OPENSSLDIR = /usr
+EOF
+
+make clean
+make
+mv /tmp/mosquitto-auth-plug/auth-plug.so /usr/local/lib/auth-plug.so
+
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+rm -rf /tmp/*
