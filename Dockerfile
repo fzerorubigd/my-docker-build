@@ -9,7 +9,6 @@ RUN bash /tmp/install.sh
 ADD user.sh /tmp/user.sh
 RUN bash /tmp/user.sh
 
-
 # Install extra tools
 ADD extra.sh /tmp/extra.sh
 RUN bash /tmp/extra.sh
