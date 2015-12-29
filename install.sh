@@ -22,7 +22,7 @@ apt-get -y upgrade
 apt-get -y --no-install-recommends -f install openssh-server git zsh vim nano libsqlite3-dev autoconf bison build-essential libssl-dev \
                 libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev htop redis-server postgresql mercurial \
                 nginx-extras realpath pkg-config unzip dnsutils re2c python-pip python-dev libpq-dev tmux bzr \
-                libsodium-dev elasticsearch cmake nodejs libxml2-dev libzip-dev libxslt1-dev openjdk-7-jdk mp3info inkscape \
+                libsodium-dev cmake nodejs libxml2-dev libzip-dev libxslt1-dev openjdk-7-jdk mp3info inkscape \
                 libc-ares-dev uuid-dev libcurl4-gnutls-dev mosquitto libmosquitto-dev mosquitto-clients fontconfig libfontconfig1 \
                 libfreetype6 libpng12-0 libjpeg62-turbo libx11-6 libxext6 libxrender1 xfonts-base xfonts-75dpi fontconfig-config libxcb1 \
                 libx11-data xfonts-utils libfontenc1 libxfont1 x11-common xfonts-encodings libxau6 libxdmcp6 ucf fonts-dejavu-core \
