@@ -26,7 +26,7 @@ apt-get -y --no-install-recommends -f install openssh-server git zsh vim nano li
                 libc-ares-dev uuid-dev libcurl4-gnutls-dev mosquitto libmosquitto-dev mosquitto-clients fontconfig libfontconfig1 \
                 libfreetype6 libpng12-0 libjpeg62-turbo libx11-6 libxext6 libxrender1 xfonts-base xfonts-75dpi fontconfig-config libxcb1 \
                 libx11-data xfonts-utils libfontenc1 libxfont1 x11-common xfonts-encodings libxau6 libxdmcp6 ucf fonts-dejavu-core \
-                ttf-bitstream-vera fonts-liberation libexpat1 || apt-get update --fix-missing
+                ttf-bitstream-vera fonts-liberation libexpat1 mlocate less || apt-get update --fix-missing
 
 
 apt-get clean

@@ -10,7 +10,7 @@ dpkg -i /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
 pip install --upgrade pgcli
 
 cd /tmp
-curl http://mosquitto.org/files/source/mosquitto-1.4.5.tar.gz | tar xvz
+curl http://mosquitto.org/files/source/mosquitto-1.4.7.tar.gz | tar xvz
 git clone https://github.com/jpmens/mosquitto-auth-plug.git
 cd /tmp/mosquitto-auth-plug
 
@@ -26,7 +26,7 @@ BACKEND_HTTP ?= yes
 BACKEND_MONGO ?= no
 
 # Specify the path to the Mosquitto sources here
-MOSQUITTO_SRC = /tmp/mosquitto-1.4.5
+MOSQUITTO_SRC = /tmp/mosquitto-1.4.7
 
 # Specify the path the OpenSSL here
 OPENSSLDIR = /usr
